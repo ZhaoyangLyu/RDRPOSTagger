@@ -7,8 +7,12 @@ import nltk
 ### end of addition by zhaoyang
 
 def initializeSentence(FREQDICT, sentence, language='german'):
-    # words = sentence.strip().split()
-    words = nltk.word_tokenize(sentence, language=language)
+    if language == 'chinese':
+        import jieba
+        words = jieba.lcut(sentence)
+    else:
+        words = nltk.word_tokenize(sentence, language=language)
+    # words = nltk.word_tokenize(sentence)
     taggedSen = []
     for word in words:
         if word in ["“", "”", "\""]:
